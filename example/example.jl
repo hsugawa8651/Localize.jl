@@ -51,5 +51,5 @@ end
 # 行列 `A` の正弦関数
 # """
 # sin(::AbstractMatrix{<:Real})
-#
-end
+
+#　end
