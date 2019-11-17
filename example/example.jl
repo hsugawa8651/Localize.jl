@@ -52,4 +52,4 @@ end
 # """
 # sin(::AbstractMatrix{<:Real})
 #
-# end
+end
