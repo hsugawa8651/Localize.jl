@@ -39,6 +39,7 @@ function locale end
 language(s::LangString{:zh_CN}) = "zh_CN/中文"
 language(s::LangString{:zh_TW}) = "zh_TW/中文"
 language(s::LangString{:fr_FR}) = "fr_FR/français"
+language(s::LangString{:ja_JP}) = "ja_JP/日本語"
 
 locale(s::LangString{L, String}) where L = "$L.UTF-8"
 
@@ -91,6 +92,10 @@ end
 
 macro fr_str(s)
     LangString{:fr_FR}(s)
+end
+
+macro ja_str(s)
+    LangString{:ja_JP}(s)
 end
 
 macro lang(locale, s)
