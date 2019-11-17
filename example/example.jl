@@ -23,6 +23,13 @@ sin(::Number)
 # fonction sinusoïdale
 # """
 # sin(::Number)
+#
+# ja"""
+#     sin(x)
+#
+# 正弦関数
+# """
+# sin(::Number)
 
 end
 
@@ -35,6 +42,13 @@ end
 #     sin(A::AbstractMatrix)
 #
 # 计算方阵 `A` 的正弦函数。
+# """
+# sin(::AbstractMatrix{<:Real})
+#
+# ja"""
+#     sin(A::AbstractMatrix)
+#
+# 行列 `A` の正弦関数
 # """
 # sin(::AbstractMatrix{<:Real})
 #
