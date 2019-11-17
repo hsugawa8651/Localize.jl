@@ -49,11 +49,12 @@ Base.show(io::IO, s::LangString) = Base.show(io, s.content)
 Compat.firstindex(s::LangString) = Compat.firstindex(s.content)
 Compat.lastindex(s::LangString) = Compat.lastindex(s.content)
 
-Base.start(s::LangString) = start(s.content)
-Base.next(s::LangString, i) = next(s.content, i)
-Base.done(s::LangString, i) = done(s.content, i)
 if isdefined(Base, :iterate)
     Base.iterate(s::LangString, i::Int) = iterate(s.content, i)
+else
+    Base.start(s::LangString) = start(s.content)
+    Base.next(s::LangString, i) = next(s.content, i)
+    Base.done(s::LangString, i) = done(s.content, i)
 end
 
 Base.nextind(s::LangString, i::Int) = nextind(s.content, i)
