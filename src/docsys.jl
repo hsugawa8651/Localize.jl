@@ -16,9 +16,9 @@ import Base: replace!
 
 function gotkey(d::IdDict, k)
     for each in keys(d)
-        k == each && return true
+        k == each && return each
     end
-    false
+    missing
 end
 
 """
@@ -29,12 +29,13 @@ a new docstring `str` to the docsystem of `__module__` for `binding` and signatu
 function replace!(__module__::Module, b::Binding, str::DocStr, @nospecialize sig = Union{})
     Docs.initmeta(__module__)
     m = get!(Docs.meta(__module__), b, MultiDoc())
-    if !gotkey(m.docs, sig)
+    sigm=gotkey(m.docs, sig)
+    if ismissing(sigm)
         @error "Cannot find original docs for `$b :: $sig` in module `$(__module__)`"
     end
 
-    old = m.docs[sig]
-    m.docs[sig] = str
+    old = m.docs[sigm]
+    m.docs[sigm] = str
 
     # inherit the rest of data
     for (k, v) in old.data
@@ -42,6 +43,6 @@ function replace!(__module__::Module, b::Binding, str::DocStr, @nospecialize sig
     end
 
     str.data[:binding] = b
-    str.data[:typesig] = sig
+    str.data[:typesig] = sigm
     return b
 end
